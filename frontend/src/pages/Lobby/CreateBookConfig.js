@@ -84,99 +84,124 @@ export default function CreateBookConfig() {
           </p>
 
           <div className="space-y-12">
-            {/* Size */}
+            {/* Size & Format */}
             <div data-testid="size-section">
-              <h2 className="text-lg font-medium mb-4">Size</h2>
-              <RadioGroup value={config.orientation} onValueChange={(v) => updateConfig('orientation', v)}>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="square_8x8" id="square" data-testid="size-square" />
-                    <Label htmlFor="square" className="cursor-pointer flex-1">
-                      <span className="font-medium">8" × 8" Square</span>
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="landscape_10x8" id="landscape" data-testid="size-landscape" />
-                    <Label htmlFor="landscape" className="cursor-pointer flex-1">
-                      <span className="font-medium">10" × 8" Landscape</span>
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="portrait_8x10" id="portrait" data-testid="size-portrait" />
-                    <Label htmlFor="portrait" className="cursor-pointer flex-1">
-                      <span className="font-medium">8" × 10" Portrait</span>
-                    </Label>
-                  </div>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* Cover */}
-            <div data-testid="cover-section">
-              <h2 className="text-lg font-medium mb-4">Cover</h2>
-              <RadioGroup value={config.cover_type} onValueChange={(v) => updateConfig('cover_type', v)}>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="hardcover" id="hardcover" data-testid="cover-hardcover" />
-                    <Label htmlFor="hardcover" className="cursor-pointer flex-1">
-                      <span className="font-medium">Hardcover</span>
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="softcover" id="softcover" data-testid="cover-softcover" />
-                    <Label htmlFor="softcover" className="cursor-pointer flex-1">
-                      <span className="font-medium">Softcover</span>
-                    </Label>
-                  </div>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* Paper */}
-            <div data-testid="paper-section">
-              <h2 className="text-lg font-medium mb-4">Paper</h2>
-              <RadioGroup value={config.paper_type} onValueChange={(v) => updateConfig('paper_type', v)}>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="matte" id="matte" data-testid="paper-matte" />
-                    <Label htmlFor="matte" className="cursor-pointer flex-1">
-                      <span className="font-medium">Matte</span>
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="glossy" id="glossy" data-testid="paper-glossy" />
-                    <Label htmlFor="glossy" className="cursor-pointer flex-1">
-                      <span className="font-medium">Glossy</span>
-                    </Label>
-                  </div>
-                  <div className="flex items-center space-x-3 p-4 border hover:border-black transition-colors cursor-pointer">
-                    <RadioGroupItem value="silk" id="silk" data-testid="paper-silk" />
-                    <Label htmlFor="silk" className="cursor-pointer flex-1">
-                      <span className="font-medium">Silk</span>
-                    </Label>
-                  </div>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* Pages */}
-            <div data-testid="pages-section">
-              <h2 className="text-lg font-medium mb-4">
-                Pages: {config.page_count}
-              </h2>
-              <Slider
-                data-testid="page-count-slider"
-                value={[config.page_count]}
-                onValueChange={(v) => updateConfig('page_count', v[0])}
-                min={20}
-                max={200}
-                step={2}
-                className="w-full"
-              />
-              <div className="flex justify-between text-sm text-gray-500 mt-2">
-                <span>20</span>
-                <span>200</span>
+              <h2 className="text-lg font-medium mb-4">Size & Format</h2>
+              <div className="flex gap-4">
+                <button
+                  data-testid="size-square"
+                  onClick={() => updateConfig('orientation', 'square_8x8')}
+                  className={`flex-1 p-6 border-2 transition-colors ${
+                    config.orientation === 'square_8x8' ? 'border-black' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-16 h-16 border-2 border-gray-400 mx-auto mb-3"></div>
+                  <p className="text-sm font-medium">Square</p>
+                  <p className="text-xs text-gray-500">8" × 8"</p>
+                </button>
+                <button
+                  data-testid="size-landscape"
+                  onClick={() => updateConfig('orientation', 'landscape_10x8')}
+                  className={`flex-1 p-6 border-2 transition-colors ${
+                    config.orientation === 'landscape_10x8' ? 'border-black' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-20 h-14 border-2 border-gray-400 mx-auto mb-3"></div>
+                  <p className="text-sm font-medium">Landscape</p>
+                  <p className="text-xs text-gray-500">10" × 8"</p>
+                </button>
+                <button
+                  data-testid="size-portrait"
+                  onClick={() => updateConfig('orientation', 'portrait_8x10')}
+                  className={`flex-1 p-6 border-2 transition-colors ${
+                    config.orientation === 'portrait_8x10' ? 'border-black' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-14 h-20 border-2 border-gray-400 mx-auto mb-3"></div>
+                  <p className="text-sm font-medium">Portrait</p>
+                  <p className="text-xs text-gray-500">8" × 10"</p>
+                </button>
               </div>
+            </div>
+
+            {/* Cover Type */}
+            <div data-testid="cover-section">
+              <h2 className="text-lg font-medium mb-4">Cover Type</h2>
+              <div className="flex gap-4">
+                <button
+                  data-testid="cover-hardcover"
+                  onClick={() => updateConfig('cover_type', 'hardcover')}
+                  className={`flex-1 p-8 border-2 transition-colors ${
+                    config.cover_type === 'hardcover' ? 'border-black bg-gray-50' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <p className="text-base font-medium mb-1">Hardcover</p>
+                  <p className="text-xs text-gray-500">Premium lay-flat binding</p>
+                </button>
+                <button
+                  data-testid="cover-softcover"
+                  onClick={() => updateConfig('cover_type', 'softcover')}
+                  className={`flex-1 p-8 border-2 transition-colors ${
+                    config.cover_type === 'softcover' ? 'border-black bg-gray-50' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <p className="text-base font-medium mb-1">Softcover</p>
+                  <p className="text-xs text-gray-500">Lightweight & flexible</p>
+                </button>
+              </div>
+            </div>
+
+            {/* Paper Type */}
+            <div data-testid="paper-section">
+              <h2 className="text-lg font-medium mb-4">Paper Type</h2>
+              <div className="flex gap-3">
+                <button
+                  data-testid="paper-matte"
+                  onClick={() => updateConfig('paper_type', 'matte')}
+                  className={`flex-1 p-6 border-2 transition-colors ${
+                    config.paper_type === 'matte' ? 'border-black' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-12 h-12 bg-gray-100 mx-auto mb-2"></div>
+                  <p className="text-sm font-medium">Matte</p>
+                </button>
+                <button
+                  data-testid="paper-glossy"
+                  onClick={() => updateConfig('paper_type', 'glossy')}
+                  className={`flex-1 p-6 border-2 transition-colors ${
+                    config.paper_type === 'glossy' ? 'border-black' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-200 to-white mx-auto mb-2"></div>
+                  <p className="text-sm font-medium">Glossy</p>
+                </button>
+                <button
+                  data-testid="paper-silk"
+                  onClick={() => updateConfig('paper_type', 'silk')}
+                  className={`flex-1 p-6 border-2 transition-colors ${
+                    config.paper_type === 'silk' ? 'border-black' : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-100 via-white to-gray-100 mx-auto mb-2"></div>
+                  <p className="text-sm font-medium">Silk</p>
+                </button>
+              </div>
+            </div>
+
+            {/* Page Number */}
+            <div data-testid="pages-section">
+              <h2 className="text-lg font-medium mb-4">Page Number</h2>
+              <select
+                data-testid="page-count-select"
+                value={config.page_count}
+                onChange={(e) => updateConfig('page_count', parseInt(e.target.value))}
+                className="w-full p-4 border-2 border-gray-300 hover:border-gray-400 focus:border-black focus:outline-none text-base"
+              >
+                {[20, 24, 30, 40, 50, 60, 80, 100, 120, 150, 200].map(count => (
+                  <option key={count} value={count}>{count} pages</option>
+                ))}
+              </select>
+              <p className="text-xs text-gray-500 mt-2">You can change covers and add pages later</p>
             </div>
 
             {/* Price */}
