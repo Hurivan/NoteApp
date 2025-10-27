@@ -26,12 +26,169 @@ import { toast } from 'sonner';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-// Layout Templates
+// Comprehensive Layout Templates - can be expanded from backend
 const LAYOUTS = {
-  FULL_BLEED: { id: 'full_bleed', name: 'Full Bleed', icon: Maximize2, slots: 1 },
-  TWO_UP: { id: 'two_up', name: 'Two Up', icon: Grid2x2, slots: 2 },
-  THREE_GRID: { id: 'three_grid', name: 'Three Grid', icon: Grid3x3, slots: 3 },
-  FOUR_GRID: { id: 'four_grid', name: 'Four Grid', icon: Grid3x3, slots: 4 },
+  // Single Image Layouts
+  FULL_BLEED: { 
+    id: 'full_bleed', 
+    name: 'Full Bleed', 
+    icon: Maximize2, 
+    slots: 1,
+    positions: [{x: 0, y: 0, w: 1, h: 1}]
+  },
+  CENTERED: { 
+    id: 'centered', 
+    name: 'Centered', 
+    icon: Maximize2, 
+    slots: 1,
+    positions: [{x: 0.1, y: 0.1, w: 0.8, h: 0.8}]
+  },
+  
+  // Two Image Layouts
+  TWO_HORIZONTAL: { 
+    id: 'two_horizontal', 
+    name: '2 Horizontal', 
+    icon: Grid2x2, 
+    slots: 2,
+    positions: [
+      {x: 0, y: 0, w: 0.5, h: 1},
+      {x: 0.5, y: 0, w: 0.5, h: 1}
+    ]
+  },
+  TWO_VERTICAL: { 
+    id: 'two_vertical', 
+    name: '2 Vertical', 
+    icon: Grid2x2, 
+    slots: 2,
+    positions: [
+      {x: 0, y: 0, w: 1, h: 0.5},
+      {x: 0, y: 0.5, w: 1, h: 0.5}
+    ]
+  },
+  TWO_LARGE_SMALL: { 
+    id: 'two_large_small', 
+    name: '2 Large/Small', 
+    icon: Grid2x2, 
+    slots: 2,
+    positions: [
+      {x: 0, y: 0, w: 0.7, h: 1},
+      {x: 0.7, y: 0, w: 0.3, h: 1}
+    ]
+  },
+  
+  // Three Image Layouts
+  THREE_VERTICAL: { 
+    id: 'three_vertical', 
+    name: '3 Vertical', 
+    icon: Grid3x3, 
+    slots: 3,
+    positions: [
+      {x: 0, y: 0, w: 1, h: 0.33},
+      {x: 0, y: 0.33, w: 1, h: 0.34},
+      {x: 0, y: 0.67, w: 1, h: 0.33}
+    ]
+  },
+  THREE_HORIZONTAL: { 
+    id: 'three_horizontal', 
+    name: '3 Horizontal', 
+    icon: Grid3x3, 
+    slots: 3,
+    positions: [
+      {x: 0, y: 0, w: 0.33, h: 1},
+      {x: 0.33, y: 0, w: 0.34, h: 1},
+      {x: 0.67, y: 0, w: 0.33, h: 1}
+    ]
+  },
+  THREE_GRID: { 
+    id: 'three_grid', 
+    name: '3 Grid', 
+    icon: Grid3x3, 
+    slots: 3,
+    positions: [
+      {x: 0, y: 0, w: 1, h: 0.5},
+      {x: 0, y: 0.5, w: 0.5, h: 0.5},
+      {x: 0.5, y: 0.5, w: 0.5, h: 0.5}
+    ]
+  },
+  THREE_L_SHAPE: { 
+    id: 'three_l_shape', 
+    name: '3 L-Shape', 
+    icon: Grid3x3, 
+    slots: 3,
+    positions: [
+      {x: 0, y: 0, w: 0.6, h: 0.6},
+      {x: 0.6, y: 0, w: 0.4, h: 0.6},
+      {x: 0, y: 0.6, w: 1, h: 0.4}
+    ]
+  },
+  
+  // Four Image Layouts
+  FOUR_GRID: { 
+    id: 'four_grid', 
+    name: '4 Grid', 
+    icon: Grid3x3, 
+    slots: 4,
+    positions: [
+      {x: 0, y: 0, w: 0.5, h: 0.5},
+      {x: 0.5, y: 0, w: 0.5, h: 0.5},
+      {x: 0, y: 0.5, w: 0.5, h: 0.5},
+      {x: 0.5, y: 0.5, w: 0.5, h: 0.5}
+    ]
+  },
+  FOUR_VERTICAL: { 
+    id: 'four_vertical', 
+    name: '4 Vertical', 
+    icon: Grid3x3, 
+    slots: 4,
+    positions: [
+      {x: 0, y: 0, w: 1, h: 0.25},
+      {x: 0, y: 0.25, w: 1, h: 0.25},
+      {x: 0, y: 0.5, w: 1, h: 0.25},
+      {x: 0, y: 0.75, w: 1, h: 0.25}
+    ]
+  },
+  FOUR_HORIZONTAL: { 
+    id: 'four_horizontal', 
+    name: '4 Horizontal', 
+    icon: Grid3x3, 
+    slots: 4,
+    positions: [
+      {x: 0, y: 0, w: 0.25, h: 1},
+      {x: 0.25, y: 0, w: 0.25, h: 1},
+      {x: 0.5, y: 0, w: 0.25, h: 1},
+      {x: 0.75, y: 0, w: 0.25, h: 1}
+    ]
+  },
+  
+  // Six Image Layouts
+  SIX_GRID: { 
+    id: 'six_grid', 
+    name: '6 Grid', 
+    icon: Grid3x3, 
+    slots: 6,
+    positions: [
+      {x: 0, y: 0, w: 0.33, h: 0.5},
+      {x: 0.33, y: 0, w: 0.34, h: 0.5},
+      {x: 0.67, y: 0, w: 0.33, h: 0.5},
+      {x: 0, y: 0.5, w: 0.33, h: 0.5},
+      {x: 0.33, y: 0.5, w: 0.34, h: 0.5},
+      {x: 0.67, y: 0.5, w: 0.33, h: 0.5}
+    ]
+  },
+  SIX_COLLAGE: { 
+    id: 'six_collage', 
+    name: '6 Collage', 
+    icon: Grid3x3, 
+    slots: 6,
+    positions: [
+      {x: 0, y: 0, w: 0.5, h: 0.4},
+      {x: 0.5, y: 0, w: 0.5, h: 0.4},
+      {x: 0, y: 0.4, w: 0.33, h: 0.3},
+      {x: 0.33, y: 0.4, w: 0.34, h: 0.3},
+      {x: 0.67, y: 0.4, w: 0.33, h: 0.3},
+      {x: 0, y: 0.7, w: 1, h: 0.3}
+    ]
+  }
 };
 
 export default function BookBuilder() {
