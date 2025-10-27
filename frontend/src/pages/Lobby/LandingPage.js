@@ -135,9 +135,18 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6">
-        <div className="max-w-6xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2025 Picturehouse. All rights reserved.</p>
+      <footer className="border-t border-gray-200 py-12 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col items-center mb-6">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_bookcraft-54/artifacts/ipd718rf_picturehousethesmalldarkroom%20logo_%40phtsdr_1C_black.png"
+              alt="Picturehouse + The Small Dark Room"
+              className="h-8 w-auto mb-4"
+            />
+          </div>
+          <div className="text-center text-sm text-gray-500">
+            <p>© 2025 Picturehouse + The Small Dark Room. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
