@@ -49,12 +49,12 @@ export default function LandingPage() {
     <div className="lobby min-h-screen">
       <Header />
       
-      <main className="pt-20 bg-gradient-to-br from-[#8B1E3F] via-[#6d1731] to-[#2E4057]">
+      <main className="pt-20 bg-[#8B1E3F]">
         {/* Hero Section */}
         <section className="py-12 px-6">
           <div className="max-w-7xl mx-auto">
             {/* Contained Hero Box */}
-            <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[600px] overflow-hidden">
               {/* Hero Slideshow */}
               <div className="absolute inset-0">
                 {heroImages.map((image, index) => (
@@ -90,7 +90,7 @@ export default function LandingPage() {
                   data-testid="create-book-hero-button"
                   onClick={handleCreateBook}
                   size="lg"
-                  className="bg-white text-[#8B1E3F] hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold"
+                  className="bg-white text-[#8B1E3F] hover:bg-gray-100 text-lg px-8 py-6 font-semibold"
                 >
                   CREATE YOUR BOOK
                   <ChevronRight className="ml-2" />
@@ -103,7 +103,7 @@ export default function LandingPage() {
                       key={index}
                       data-testid={`slide-indicator-${index}`}
                       onClick={() => setCurrentSlide(index)}
-                      className={`h-1 rounded-full transition-all ${
+                      className={`h-1 transition-all ${
                         currentSlide === index ? 'w-12 bg-white' : 'w-6 bg-white/50'
                       }`}
                     />
