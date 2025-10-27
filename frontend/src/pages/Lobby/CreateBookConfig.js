@@ -152,12 +152,14 @@ export default function CreateBookConfig() {
                 <ArrowRight size={12} />
               </button>
 
-              {/* Configuration Accordion - Compact */}
+              {/* Configuration Accordion - Flat Light Gray */}
               <Accordion type="multiple" defaultValue={['specs']} className="w-full">
                 {/* Specifications */}
-                <AccordionItem value="specs" className="border-b">
-                  <AccordionTrigger className="text-sm font-medium py-2">Specifications</AccordionTrigger>
-                  <AccordionContent className="space-y-3 pb-3">
+                <AccordionItem value="specs" className="border-b border-gray-200">
+                  <AccordionTrigger className="text-sm font-medium h-[25px] py-0 bg-gray-100 px-3 hover:no-underline data-[state=open]:bg-gray-100">
+                    Specifications
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-3 pb-3 pt-3">
                     {/* Size */}
                     <div>
                       <p className="text-xs text-gray-500 mb-1.5">Size</p>
@@ -165,8 +167,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="size-square"
                           onClick={() => updateConfig('orientation', 'square_8x8')}
-                          className={`w-12 h-12 border flex items-center justify-center transition-colors ${
-                            config.orientation === 'square_8x8' ? 'border-black border-2' : 'border-gray-300'
+                          className={`w-12 h-12 flex items-center justify-center transition-all ${
+                            config.orientation === 'square_8x8' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
                           <div className="w-6 h-6 border border-gray-400"></div>
@@ -174,8 +178,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="size-landscape"
                           onClick={() => updateConfig('orientation', 'landscape_10x8')}
-                          className={`w-12 h-12 border flex items-center justify-center transition-colors ${
-                            config.orientation === 'landscape_10x8' ? 'border-black border-2' : 'border-gray-300'
+                          className={`w-12 h-12 flex items-center justify-center transition-all ${
+                            config.orientation === 'landscape_10x8' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
                           <div className="w-7 h-5 border border-gray-400"></div>
@@ -183,8 +189,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="size-portrait"
                           onClick={() => updateConfig('orientation', 'portrait_8x10')}
-                          className={`w-12 h-12 border flex items-center justify-center transition-colors ${
-                            config.orientation === 'portrait_8x10' ? 'border-black border-2' : 'border-gray-300'
+                          className={`w-12 h-12 flex items-center justify-center transition-all ${
+                            config.orientation === 'portrait_8x10' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
                           <div className="w-5 h-7 border border-gray-400"></div>
@@ -201,10 +209,15 @@ export default function CreateBookConfig() {
                             key={fabric.id}
                             data-testid={`fabric-${fabric.id}`}
                             onClick={() => updateConfig('cover_fabric', fabric.id)}
-                            className={`w-8 h-8 border transition-colors ${
-                              config.cover_fabric === fabric.id ? 'border-black border-2' : 'border-gray-300'
+                            className={`w-8 h-8 transition-all ${
+                              config.cover_fabric === fabric.id 
+                                ? 'outline outline-2 outline-black' 
+                                : 'hover:opacity-80'
                             }`}
-                            style={{ backgroundColor: fabric.color }}
+                            style={{ 
+                              backgroundColor: fabric.color,
+                              filter: config.cover_fabric === fabric.id ? 'brightness(0.8)' : 'none'
+                            }}
                             title={fabric.name}
                           />
                         ))}
@@ -218,8 +231,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="cover-hardcover"
                           onClick={() => updateConfig('cover_type', 'hardcover')}
-                          className={`flex-1 px-2 py-1.5 border text-left transition-colors ${
-                            config.cover_type === 'hardcover' ? 'border-black bg-gray-50' : 'border-gray-300'
+                          className={`flex-1 px-2 py-1.5 text-left transition-all ${
+                            config.cover_type === 'hardcover' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
                           <p className="text-xs font-medium">Hardcover</p>
@@ -227,8 +242,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="cover-softcover"
                           onClick={() => updateConfig('cover_type', 'softcover')}
-                          className={`flex-1 px-2 py-1.5 border text-left transition-colors ${
-                            config.cover_type === 'softcover' ? 'border-black bg-gray-50' : 'border-gray-300'
+                          className={`flex-1 px-2 py-1.5 text-left transition-all ${
+                            config.cover_type === 'softcover' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
                           <p className="text-xs font-medium">Softcover</p>
@@ -243,8 +260,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="paper-matte"
                           onClick={() => updateConfig('paper_type', 'matte')}
-                          className={`flex-1 p-1.5 border transition-colors ${
-                            config.paper_type === 'matte' ? 'border-black' : 'border-gray-300'
+                          className={`flex-1 p-1.5 transition-all ${
+                            config.paper_type === 'matte' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-white hover:bg-gray-50'
                           }`}
                         >
                           <div className="w-full h-4 bg-gray-100"></div>
@@ -253,8 +272,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="paper-glossy"
                           onClick={() => updateConfig('paper_type', 'glossy')}
-                          className={`flex-1 p-1.5 border transition-colors ${
-                            config.paper_type === 'glossy' ? 'border-black' : 'border-gray-300'
+                          className={`flex-1 p-1.5 transition-all ${
+                            config.paper_type === 'glossy' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-white hover:bg-gray-50'
                           }`}
                         >
                           <div className="w-full h-4 bg-gradient-to-br from-gray-200 to-white"></div>
@@ -263,8 +284,10 @@ export default function CreateBookConfig() {
                         <button
                           data-testid="paper-silk"
                           onClick={() => updateConfig('paper_type', 'silk')}
-                          className={`flex-1 p-1.5 border transition-colors ${
-                            config.paper_type === 'silk' ? 'border-black' : 'border-gray-300'
+                          className={`flex-1 p-1.5 transition-all ${
+                            config.paper_type === 'silk' 
+                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              : 'bg-white hover:bg-gray-50'
                           }`}
                         >
                           <div className="w-full h-4 bg-gradient-to-br from-gray-100 via-white to-gray-100"></div>
@@ -280,7 +303,7 @@ export default function CreateBookConfig() {
                         data-testid="page-count-select"
                         value={config.page_count}
                         onChange={(e) => updateConfig('page_count', parseInt(e.target.value))}
-                        className="w-full px-2 py-1.5 border border-gray-300 focus:border-black focus:outline-none text-xs"
+                        className="w-full px-2 py-1.5 bg-gray-100 focus:bg-gray-200 focus:outline focus:outline-2 focus:outline-black text-xs"
                       >
                         {[20, 24, 30, 40, 50, 60, 80, 100, 120, 150, 200].map(count => (
                           <option key={count} value={count}>{count}</option>
@@ -291,9 +314,11 @@ export default function CreateBookConfig() {
                 </AccordionItem>
 
                 {/* Features */}
-                <AccordionItem value="features" className="border-b">
-                  <AccordionTrigger className="text-sm font-medium py-2">Features</AccordionTrigger>
-                  <AccordionContent className="text-xs text-gray-600 space-y-1 pb-3">
+                <AccordionItem value="features" className="border-b border-gray-200">
+                  <AccordionTrigger className="text-sm font-medium h-[25px] py-0 bg-gray-100 px-3 hover:no-underline data-[state=open]:bg-gray-100">
+                    Features
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-gray-600 space-y-1 pb-3 pt-3">
                     <p>• Lay-flat binding for seamless spreads</p>
                     <p>• Archival quality paper (300 ppi)</p>
                     <p>• Premium fabric cover options</p>
@@ -303,9 +328,11 @@ export default function CreateBookConfig() {
                 </AccordionItem>
 
                 {/* Recommended For */}
-                <AccordionItem value="recommended" className="border-b">
-                  <AccordionTrigger className="text-sm font-medium py-2">Recommended for</AccordionTrigger>
-                  <AccordionContent className="text-xs text-gray-600 space-y-1 pb-3">
+                <AccordionItem value="recommended" className="border-b border-gray-200">
+                  <AccordionTrigger className="text-sm font-medium h-[25px] py-0 bg-gray-100 px-3 hover:no-underline data-[state=open]:bg-gray-100">
+                    Recommended for
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-gray-600 space-y-1 pb-3 pt-3">
                     <p>• Wedding albums</p>
                     <p>• Professional portfolios</p>
                     <p>• Family memories</p>
@@ -315,9 +342,11 @@ export default function CreateBookConfig() {
                 </AccordionItem>
 
                 {/* Shipping & Delivery */}
-                <AccordionItem value="shipping" className="border-b">
-                  <AccordionTrigger className="text-sm font-medium py-2">Shipping & delivery</AccordionTrigger>
-                  <AccordionContent className="text-xs text-gray-600 space-y-1 pb-3">
+                <AccordionItem value="shipping" className="border-b border-gray-200">
+                  <AccordionTrigger className="text-sm font-medium h-[25px] py-0 bg-gray-100 px-3 hover:no-underline data-[state=open]:bg-gray-100">
+                    Shipping & delivery
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-gray-600 space-y-1 pb-3 pt-3">
                     <p><strong>Production time:</strong> 5-7 business days</p>
                     <p><strong>Shipping:</strong> 3-5 business days</p>
                     <p><strong>Express shipping:</strong> Available at checkout</p>
@@ -326,9 +355,11 @@ export default function CreateBookConfig() {
                 </AccordionItem>
 
                 {/* FAQ */}
-                <AccordionItem value="faq" className="border-b">
-                  <AccordionTrigger className="text-sm font-medium py-2">FAQ</AccordionTrigger>
-                  <AccordionContent className="text-xs text-gray-600 space-y-2 pb-3">
+                <AccordionItem value="faq" className="border-b border-gray-200">
+                  <AccordionTrigger className="text-sm font-medium h-[25px] py-0 bg-gray-100 px-3 hover:no-underline data-[state=open]:bg-gray-100">
+                    FAQ
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-gray-600 space-y-2 pb-3 pt-3">
                     <div>
                       <p className="font-medium">Can I edit my book later?</p>
                       <p className="text-gray-500">Yes, you can save and edit anytime before ordering.</p>
