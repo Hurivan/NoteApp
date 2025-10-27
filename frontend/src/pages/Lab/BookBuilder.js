@@ -621,22 +621,25 @@ export default function BookBuilder() {
 
             <div>
               <h3 className="font-semibold text-sm mb-3">Page Layouts</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {Object.values(LAYOUTS).map((layout) => {
-                  const Icon = layout.icon;
-                  return (
-                    <button
-                      key={layout.id}
-                      data-testid={`layout-${layout.id}`}
-                      onClick={() => updatePageLayout('left', layout.id)}
-                      className="border p-3 hover:border-[#1a1a1a] transition-colors text-center"
-                    >
-                      <Icon className="mx-auto mb-1" size={24} />
-                      <p className="text-xs">{layout.name}</p>
-                    </button>
-                  );
-                })}
-              </div>
+              <ScrollArea className="h-80">
+                <div className="grid grid-cols-2 gap-2">
+                  {Object.values(LAYOUTS).map((layout) => {
+                    const Icon = layout.icon;
+                    return (
+                      <button
+                        key={layout.id}
+                        data-testid={`layout-${layout.id}`}
+                        onClick={() => updatePageLayout('left', layout.id)}
+                        className="border p-3 hover:border-[#1a1a1a] transition-colors text-center"
+                      >
+                        <Icon className="mx-auto mb-1" size={20} />
+                        <p className="text-xs font-medium">{layout.name}</p>
+                        <p className="text-xs text-gray-400">{layout.slots} {layout.slots === 1 ? 'image' : 'images'}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </ScrollArea>
             </div>
 
             <div>
