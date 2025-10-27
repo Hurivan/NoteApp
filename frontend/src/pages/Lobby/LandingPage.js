@@ -47,7 +47,7 @@ export default function LandingPage() {
         <section className="py-12 px-6">
           <div className="max-w-5xl mx-auto">
             <img 
-              src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=1400&h=900&fit=crop&q=90"
+              src="https://customer-assets.emergentagent.com/job_bookcraft-54/artifacts/1lghb04u_image.png"
               alt="Photo Book"
               className="w-full h-auto"
             />
