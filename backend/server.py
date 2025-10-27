@@ -401,6 +401,28 @@ async def create_checkout_session(order_id: str, user_id: str = Depends(get_curr
         "message": "Stripe checkout session created (mocked)"
     }
 
+# Get Available Layouts
+@api_router.get("/layouts")
+async def get_layouts():
+    """Return all available page layouts for the book builder"""
+    layouts = [
+        {"id": "full_bleed", "name": "Full Bleed", "slots": 1, "category": "single"},
+        {"id": "centered", "name": "Centered", "slots": 1, "category": "single"},
+        {"id": "two_horizontal", "name": "2 Horizontal", "slots": 2, "category": "two"},
+        {"id": "two_vertical", "name": "2 Vertical", "slots": 2, "category": "two"},
+        {"id": "two_large_small", "name": "2 Large/Small", "slots": 2, "category": "two"},
+        {"id": "three_vertical", "name": "3 Vertical", "slots": 3, "category": "three"},
+        {"id": "three_horizontal", "name": "3 Horizontal", "slots": 3, "category": "three"},
+        {"id": "three_grid", "name": "3 Grid", "slots": 3, "category": "three"},
+        {"id": "three_l_shape", "name": "3 L-Shape", "slots": 3, "category": "three"},
+        {"id": "four_grid", "name": "4 Grid", "slots": 4, "category": "four"},
+        {"id": "four_vertical", "name": "4 Vertical", "slots": 4, "category": "four"},
+        {"id": "four_horizontal", "name": "4 Horizontal", "slots": 4, "category": "four"},
+        {"id": "six_grid", "name": "6 Grid", "slots": 6, "category": "six"},
+        {"id": "six_collage", "name": "6 Collage", "slots": 6, "category": "six"},
+    ]
+    return {"layouts": layouts}
+
 # Include router
 app.include_router(api_router)
 
