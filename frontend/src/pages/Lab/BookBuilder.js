@@ -622,22 +622,55 @@ export default function BookBuilder() {
             <div>
               <h3 className="font-semibold text-sm mb-3">Page Layouts</h3>
               <ScrollArea className="h-80">
-                <div className="grid grid-cols-2 gap-2">
-                  {Object.values(LAYOUTS).map((layout) => {
-                    const Icon = layout.icon;
-                    return (
-                      <button
-                        key={layout.id}
-                        data-testid={`layout-${layout.id}`}
-                        onClick={() => updatePageLayout('left', layout.id)}
-                        className="border p-3 hover:border-[#1a1a1a] transition-colors text-center"
-                      >
-                        <Icon className="mx-auto mb-1" size={20} />
-                        <p className="text-xs font-medium">{layout.name}</p>
-                        <p className="text-xs text-gray-400">{layout.slots} {layout.slots === 1 ? 'image' : 'images'}</p>
-                      </button>
-                    );
-                  })}
+                <div className="space-y-6">
+                  {/* Single Image Layouts */}
+                  <div>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Single</p>
+                    <div className="space-y-2">
+                      <LayoutPreview layout={LAYOUTS.FULL_BLEED} onClick={() => updatePageLayout('left', LAYOUTS.FULL_BLEED.id)} />
+                      <LayoutPreview layout={LAYOUTS.CENTERED} onClick={() => updatePageLayout('left', LAYOUTS.CENTERED.id)} />
+                    </div>
+                  </div>
+
+                  {/* Two Image Layouts */}
+                  <div>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">2 Images</p>
+                    <div className="space-y-2">
+                      <LayoutPreview layout={LAYOUTS.TWO_HORIZONTAL} onClick={() => updatePageLayout('left', LAYOUTS.TWO_HORIZONTAL.id)} />
+                      <LayoutPreview layout={LAYOUTS.TWO_VERTICAL} onClick={() => updatePageLayout('left', LAYOUTS.TWO_VERTICAL.id)} />
+                      <LayoutPreview layout={LAYOUTS.TWO_LARGE_SMALL} onClick={() => updatePageLayout('left', LAYOUTS.TWO_LARGE_SMALL.id)} />
+                    </div>
+                  </div>
+
+                  {/* Three Image Layouts */}
+                  <div>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">3 Images</p>
+                    <div className="space-y-2">
+                      <LayoutPreview layout={LAYOUTS.THREE_VERTICAL} onClick={() => updatePageLayout('left', LAYOUTS.THREE_VERTICAL.id)} />
+                      <LayoutPreview layout={LAYOUTS.THREE_HORIZONTAL} onClick={() => updatePageLayout('left', LAYOUTS.THREE_HORIZONTAL.id)} />
+                      <LayoutPreview layout={LAYOUTS.THREE_GRID} onClick={() => updatePageLayout('left', LAYOUTS.THREE_GRID.id)} />
+                      <LayoutPreview layout={LAYOUTS.THREE_L_SHAPE} onClick={() => updatePageLayout('left', LAYOUTS.THREE_L_SHAPE.id)} />
+                    </div>
+                  </div>
+
+                  {/* Four Image Layouts */}
+                  <div>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">4 Images</p>
+                    <div className="space-y-2">
+                      <LayoutPreview layout={LAYOUTS.FOUR_GRID} onClick={() => updatePageLayout('left', LAYOUTS.FOUR_GRID.id)} />
+                      <LayoutPreview layout={LAYOUTS.FOUR_VERTICAL} onClick={() => updatePageLayout('left', LAYOUTS.FOUR_VERTICAL.id)} />
+                      <LayoutPreview layout={LAYOUTS.FOUR_HORIZONTAL} onClick={() => updatePageLayout('left', LAYOUTS.FOUR_HORIZONTAL.id)} />
+                    </div>
+                  </div>
+
+                  {/* Six Image Layouts */}
+                  <div>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">6 Images</p>
+                    <div className="space-y-2">
+                      <LayoutPreview layout={LAYOUTS.SIX_GRID} onClick={() => updatePageLayout('left', LAYOUTS.SIX_GRID.id)} />
+                      <LayoutPreview layout={LAYOUTS.SIX_COLLAGE} onClick={() => updatePageLayout('left', LAYOUTS.SIX_COLLAGE.id)} />
+                    </div>
+                  </div>
                 </div>
               </ScrollArea>
             </div>
