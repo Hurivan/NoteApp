@@ -802,3 +802,37 @@ function PageImageRenderer({ imageUrl, layout, index }) {
 
   return <KonvaImage image={image} x={offsetX} y={offsetY} width={scaledWidth} height={scaledHeight} />;
 }
+
+// Layout Preview Component - Shows visual representation like Milk Books
+function LayoutPreview({ layout, onClick }) {
+  return (
+    <button
+      data-testid={`layout-${layout.id}`}
+      onClick={onClick}
+      className="w-full border border-gray-200 hover:border-gray-400 transition-colors p-3 flex items-center gap-3"
+    >
+      {/* Visual Preview */}
+      <div className="w-20 h-16 bg-white border border-gray-200 flex-shrink-0 relative">
+        {layout.positions.map((pos, idx) => (
+          <div
+            key={idx}
+            className="absolute bg-gray-200"
+            style={{
+              left: `${pos.x * 100}%`,
+              top: `${pos.y * 100}%`,
+              width: `${pos.w * 100}%`,
+              height: `${pos.h * 100}%`,
+              border: '1px solid white'
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Label */}
+      <div className="flex-1 text-left">
+        <p className="text-sm font-medium">{layout.name}</p>
+        <p className="text-xs text-gray-500">{layout.slots} {layout.slots === 1 ? 'image' : 'images'}</p>
+      </div>
+    </button>
+  );
+}
