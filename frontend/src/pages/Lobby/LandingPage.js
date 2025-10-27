@@ -49,64 +49,73 @@ export default function LandingPage() {
     <div className="lobby min-h-screen">
       <Header />
       
-      <main className="pt-20">
+      <main className="pt-20 bg-gradient-to-br from-[#8B1E3F] via-[#6d1731] to-[#2E4057]">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#8B1E3F]/20 via-transparent to-[#2E4057]/20" />
-          
-          {/* Hero Slideshow */}
-          <div className="absolute inset-0">
-            {heroImages.map((image, index) => (
-              <div
-                key={index}
-                className="absolute inset-0 transition-opacity duration-1000"
-                style={{
-                  opacity: currentSlide === index ? 1 : 0,
-                  backgroundImage: `url(${image.url})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-              />
-            ))}
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
+        <section className="py-12 px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Contained Hero Box */}
+            <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+              {/* Hero Slideshow */}
+              <div className="absolute inset-0">
+                {heroImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="absolute inset-0 transition-opacity duration-1000"
+                    style={{
+                      opacity: currentSlide === index ? 1 : 0,
+                      backgroundImage: `url(${image.url})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                ))}
+                <div className="absolute inset-0 bg-black/50" />
+              </div>
 
-          {/* Content */}
-          <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
-            <p className="text-sm sm:text-base tracking-[0.3em] uppercase mb-6 opacity-90">
-              for photographers by photographers
-            </p>
-            
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-              {heroImages[currentSlide].title}
-            </h1>
-            
-            <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              {heroImages[currentSlide].description}
-            </p>
-            
-            <Button
-              data-testid="create-book-hero-button"
-              onClick={handleCreateBook}
-              size="lg"
-              className="bg-white text-[#8B1E3F] hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold"
-            >
-              CREATE YOUR BOOK
-              <ChevronRight className="ml-2" />
-            </Button>
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-6">
+                <p className="text-sm sm:text-base tracking-[0.3em] uppercase mb-6 opacity-90">
+                  for photographers by photographers
+                </p>
+                
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {heroImages[currentSlide].title}
+                </h1>
+                
+                <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                  {heroImages[currentSlide].description}
+                </p>
+                
+                <Button
+                  data-testid="create-book-hero-button"
+                  onClick={handleCreateBook}
+                  size="lg"
+                  className="bg-white text-[#8B1E3F] hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold"
+                >
+                  CREATE YOUR BOOK
+                  <ChevronRight className="ml-2" />
+                </Button>
 
-            {/* Slide Indicators */}
-            <div className="flex gap-2 justify-center mt-12">
-              {heroImages.map((_, index) => (
-                <button
-                  key={index}
-                  data-testid={`slide-indicator-${index}`}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`h-1 rounded-full transition-all ${
-                    currentSlide === index ? 'w-12 bg-white' : 'w-6 bg-white/50'
-                  }`}
-                />
-              ))}
+                {/* Slide Indicators */}
+                <div className="flex gap-2 justify-center mt-10">
+                  {heroImages.map((_, index) => (
+                    <button
+                      key={index}
+                      data-testid={`slide-indicator-${index}`}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`h-1 rounded-full transition-all ${
+                        currentSlide === index ? 'w-12 bg-white' : 'w-6 bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Caption below image */}
+            <div className="text-center mt-6 text-white">
+              <p className="text-lg font-medium">{heroImages[currentSlide].title}</p>
+              <p className="text-sm opacity-80">{heroImages[currentSlide].description}</p>
             </div>
           </div>
         </section>
