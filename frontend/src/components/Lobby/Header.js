@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import AuthModal from './AuthModal';
@@ -12,16 +12,39 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold" style={{ fontFamily: 'Playfair Display, serif' }}>
-            <span className="text-[#8B1E3F]">picture</span><span className="text-[#2E4057]">house</span>
+          <Link to="/" className="text-2xl font-light tracking-tight">
+            Picturehouse
           </Link>
 
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            <Link to="/products" className="hover:text-gray-600 transition-colors">Products</Link>
+            <Link to="/pricing" className="hover:text-gray-600 transition-colors">Pricing</Link>
+            <Link to="/indesign" className="hover:text-gray-600 transition-colors">For Designers</Link>
+            {user ? (
+              <>
+                <Link to="/account" className="hover:text-gray-600 transition-colors">Account</Link>
+                <button onClick={logout} className="hover:text-gray-600 transition-colors">Logout</button>
+              </>
+            ) : (
+              <Button
+                data-testid="header-login-button"
+                onClick={() => setShowAuth(true)}
+                variant="outline"
+                size="sm"
+              >
+                Login
+              </Button>
+            )}
+          </nav>
+
+          {/* Mobile Menu Button */}
           <button
-            data-testid="hamburger-menu-button"
+            data-testid="mobile-menu-button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 hover:bg-gray-100 rounded-lg"
+            className="md:hidden p-2"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -29,44 +52,24 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div data-testid="mobile-menu" className="absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
-            <nav className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4">
-              <Link to="/" className="text-lg hover:text-[#8B1E3F]" onClick={() => setIsMenuOpen(false)}>Home</Link>
-              <Link to="/create" className="text-lg hover:text-[#8B1E3F]" onClick={() => setIsMenuOpen(false)}>Create Book</Link>
-              <Link to="/products" className="text-lg hover:text-[#8B1E3F]" onClick={() => setIsMenuOpen(false)}>Products</Link>
-              <Link to="/pricing" className="text-lg hover:text-[#8B1E3F]" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
-              <Link to="/indesign" className="text-lg hover:text-[#8B1E3F]" onClick={() => setIsMenuOpen(false)}>InDesign</Link>
-              
-              <div className="pt-4 border-t border-gray-200">
-                {user ? (
-                  <>
-                    <Link to="/account" className="flex items-center gap-2 text-lg hover:text-[#8B1E3F] mb-3" onClick={() => setIsMenuOpen(false)}>
-                      <User size={20} /> Account
-                    </Link>
-                    <button
-                      data-testid="logout-button"
-                      onClick={() => {
-                        logout();
-                        setIsMenuOpen(false);
-                      }}
-                      className="flex items-center gap-2 text-lg hover:text-[#8B1E3F]"
-                    >
-                      <LogOut size={20} /> Logout
-                    </button>
-                  </>
-                ) : (
-                  <Button
-                    data-testid="login-button"
-                    onClick={() => {
-                      setShowAuth(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="bg-[#8B1E3F] hover:bg-[#6d1731] text-white"
-                  >
-                    Login / Signup
-                  </Button>
-                )}
-              </div>
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <nav className="px-6 py-6 flex flex-col gap-4">
+              <Link to="/products" className="text-base" onClick={() => setIsMenuOpen(false)}>Products</Link>
+              <Link to="/pricing" className="text-base" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
+              <Link to="/indesign" className="text-base" onClick={() => setIsMenuOpen(false)}>For Designers</Link>
+              {user ? (
+                <>
+                  <Link to="/account" className="text-base" onClick={() => setIsMenuOpen(false)}>Account</Link>
+                  <button onClick={() => { logout(); setIsMenuOpen(false); }} className="text-base text-left">Logout</button>
+                </>
+              ) : (
+                <Button
+                  onClick={() => { setShowAuth(true); setIsMenuOpen(false); }}
+                  size="sm"
+                >
+                  Login
+                </Button>
+              )}
             </nav>
           </div>
         )}
