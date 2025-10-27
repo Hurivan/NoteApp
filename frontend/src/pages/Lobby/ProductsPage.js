@@ -1,53 +1,64 @@
 import React from 'react';
 import Header from '@/components/Lobby/Header';
-import { BookOpen, Layers, Box } from 'lucide-react';
 
 export default function ProductsPage() {
   return (
-    <div className="lobby min-h-screen">
+    <div className="min-h-screen bg-white">
       <Header />
       
       <main className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <h1 className="text-4xl md:text-5xl font-light text-center mb-16">
             Our Products
           </h1>
-          <p className="text-xl text-center text-gray-600 mb-16">
-            Premium photo books crafted for photographers
-          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div data-testid="product-hardcover" className="text-center">
-              <div className="aspect-square bg-gradient-to-br from-[#8B1E3F] to-[#6d1731] rounded-2xl mb-6 flex items-center justify-center">
-                <BookOpen size={120} className="text-white" />
+          <div className="space-y-24">
+            {/* Hardcover Books */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=700&h=700&fit=crop"
+                  alt="Hardcover Books"
+                  className="w-full h-auto"
+                />
               </div>
-              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Hardcover Books</h2>
-              <p className="text-gray-600 leading-relaxed">
-                Our premium hardcover books feature lay-flat binding, allowing your spreads to open completely flat. 
-                Perfect for panoramic shots and double-page spreads. Museum-quality printing on archival paper.
-              </p>
+              <div>
+                <h2 className="text-3xl font-light mb-6">Hardcover Books</h2>
+                <p className="text-gray-600 font-light leading-relaxed mb-6">
+                  Our premium hardcover books feature lay-flat binding, allowing your spreads 
+                  to open completely flat. Perfect for panoramic shots and double-page spreads.
+                </p>
+                <ul className="space-y-3 text-gray-600 font-light">
+                  <li>• Lay-flat binding</li>
+                  <li>• Archival quality paper</li>
+                  <li>• Premium hardcover</li>
+                  <li>• Available in 3 sizes</li>
+                </ul>
+              </div>
             </div>
 
-            <div data-testid="product-softcover" className="text-center">
-              <div className="aspect-square bg-gradient-to-br from-[#E27D60] to-[#c96b50] rounded-2xl mb-6 flex items-center justify-center">
-                <Layers size={120} className="text-white" />
+            {/* Softcover Books */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="md:order-2">
+                <img 
+                  src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&h=700&fit=crop"
+                  alt="Softcover Books"
+                  className="w-full h-auto"
+                />
               </div>
-              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Softcover Books</h2>
-              <p className="text-gray-600 leading-relaxed">
-                Lightweight and flexible, our softcover books are perfect for portfolios and client presentations. 
-                High-quality binding ensures durability while maintaining a professional appearance.
-              </p>
-            </div>
-
-            <div data-testid="product-presentation" className="text-center">
-              <div className="aspect-square bg-gradient-to-br from-[#2E4057] to-[#1e2a3a] rounded-2xl mb-6 flex items-center justify-center">
-                <Box size={120} className="text-white" />
+              <div className="md:order-1">
+                <h2 className="text-3xl font-light mb-6">Softcover Books</h2>
+                <p className="text-gray-600 font-light leading-relaxed mb-6">
+                  Lightweight and flexible, our softcover books are perfect for portfolios 
+                  and client presentations.
+                </p>
+                <ul className="space-y-3 text-gray-600 font-light">
+                  <li>• Lightweight design</li>
+                  <li>• Professional binding</li>
+                  <li>• High-quality paper</li>
+                  <li>• Cost-effective</li>
+                </ul>
               </div>
-              <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Presentation</h2>
-              <p className="text-gray-600 leading-relaxed">
-                Elevate your books with custom presentation boxes, protective sleeves, and specialty binding options. 
-                Perfect for client deliverables and special occasions.
-              </p>
             </div>
           </div>
         </div>
