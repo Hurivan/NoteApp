@@ -14,8 +14,12 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-light tracking-tight">
-            Picturehouse
+          <Link to="/" className="flex items-center">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_bookcraft-54/artifacts/ipd718rf_picturehousethesmalldarkroom%20logo_%40phtsdr_1C_black.png"
+              alt="Picturehouse + The Small Dark Room"
+              className="h-6 md:h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Nav */}
