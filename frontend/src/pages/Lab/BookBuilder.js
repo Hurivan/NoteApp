@@ -436,6 +436,12 @@ export default function BookBuilder() {
               Back to Lobby
             </Button>
             <div className="h-6 w-px bg-gray-300" />
+            <img 
+              src="https://customer-assets.emergentagent.com/job_bookcraft-54/artifacts/ipd718rf_picturehousethesmalldarkroom%20logo_%40phtsdr_1C_black.png"
+              alt="Picturehouse + The Small Dark Room"
+              className="h-5 w-auto"
+            />
+            <div className="h-6 w-px bg-gray-300" />
             <span className="font-semibold text-sm">
               {project?.name || 'New Project'}
             </span>
