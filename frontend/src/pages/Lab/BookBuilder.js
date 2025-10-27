@@ -747,48 +747,20 @@ function PageImageRenderer({ imageUrl, layout, index }) {
   }, [imageUrl]);
 
   if (!image) return null;
+  
+  // Get position from layout definition
+  const position = layout.positions[index];
+  if (!position) return null;
+  
+  const canvasWidth = 400;
+  const canvasHeight = 500;
+  
+  const x = position.x * canvasWidth;
+  const y = position.y * canvasHeight;
+  const width = position.w * canvasWidth;
+  const height = position.h * canvasHeight;
 
-  let x = 0, y = 0, width = 400, height = 500;
-
-  if (layout.id === 'two_up') {
-    if (index === 0) {
-      x = 0;
-      y = 0;
-      width = 400;
-      height = 250;
-    } else if (index === 1) {
-      x = 0;
-      y = 250;
-      width = 400;
-      height = 250;
-    }
-  } else if (layout.id === 'three_grid') {
-    if (index === 0) {
-      x = 0;
-      y = 0;
-      width = 400;
-      height = 250;
-    } else if (index === 1) {
-      x = 0;
-      y = 250;
-      width = 200;
-      height = 250;
-    } else if (index === 2) {
-      x = 200;
-      y = 250;
-      width = 200;
-      height = 250;
-    }
-  } else if (layout.id === 'four_grid') {
-    const positions = [
-      { x: 0, y: 0, width: 200, height: 250 },
-      { x: 200, y: 0, width: 200, height: 250 },
-      { x: 0, y: 250, width: 200, height: 250 },
-      { x: 200, y: 250, width: 200, height: 250 },
-    ];
-    ({ x, y, width, height } = positions[index] || positions[0]);
-  }
-
+  // Scale image to fit maintaining aspect ratio
   const scale = Math.min(width / image.width, height / image.height);
   const scaledWidth = image.width * scale;
   const scaledHeight = image.height * scale;
