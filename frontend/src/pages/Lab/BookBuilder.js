@@ -140,7 +140,7 @@ export default function BookBuilder() {
         </div>
       </header>
 
-      <div className="pt-12 flex flex-1 overflow-hidden">
+      <div className="pt-12 flex flex-1 h-screen overflow-hidden">
         {/* Left Sidebar - Spread Thumbnails */}
         <aside className="w-48 border-r border-gray-200 bg-white overflow-y-auto">
           <ScrollArea className="h-full p-2">
@@ -165,7 +165,7 @@ export default function BookBuilder() {
         </aside>
 
         {/* Center - Canvas */}
-        <main className="flex-1 flex flex-col bg-gray-50">
+        <main className="flex-1 flex flex-col bg-gray-50 overflow-hidden">
           {viewMode === 'spread' && currentSpread && (
             <AnimatePresence mode="wait">
               <motion.div
@@ -174,7 +174,7 @@ export default function BookBuilder() {
                 animate={{ opacity: 1, rotateY: 0 }}
                 exit={{ opacity: 0, rotateY: 10 }}
                 transition={{ duration: 0.3 }}
-                className="flex-1 flex items-center justify-center p-8"
+                className="flex-1 flex items-center justify-center overflow-auto"
               >
                 <SpreadCanvas spread={currentSpread} spreadIndex={currentSpreadIndex} />
               </motion.div>
@@ -182,7 +182,7 @@ export default function BookBuilder() {
           )}
 
           {/* Bottom Controls */}
-          <div className="border-t border-gray-200 bg-white p-3">
+          <div className="border-t border-gray-200 bg-white p-3 flex-shrink-0">
             <div className="flex items-center justify-center gap-4">
               <Button
                 onClick={() => setCurrentSpread(Math.max(0, currentSpreadIndex - 1))}
