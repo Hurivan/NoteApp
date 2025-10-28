@@ -109,7 +109,7 @@ h1 {
 .tab-btn.active::after {
     content: '';
     position: absolute;
-    bottom: -9px;
+    bottom: -8px;
     left: 0;
     right: 0;
     height: 1px;
