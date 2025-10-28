@@ -63,10 +63,15 @@ class NotesApp {
         const modal = document.getElementById('noteModal');
         const form = document.getElementById('noteForm');
         const deleteBtn = document.getElementById('deleteBtn');
-        const contentEditor = document.getElementById('noteContent');
         
         form.reset();
-        contentEditor.innerHTML = '';
+        
+        // Initialize scrapbook editor if not already done
+        if (!this.scrapbookEditor) {
+            this.scrapbookEditor = new ScrapbookEditor('noteContent');
+        }
+        
+        this.scrapbookEditor.clear();
         
         if (note) {
             // Edit mode
@@ -77,7 +82,7 @@ class NotesApp {
             document.getElementById('noteCategory').value = note.category || '';
             document.getElementById('noteDate').value = note.date;
             document.getElementById('noteDescription').value = note.description || '';
-            contentEditor.innerHTML = note.content || '';
+            this.scrapbookEditor.setContent(note.content || '');
             deleteBtn.style.display = 'block';
         } else {
             // Create mode
