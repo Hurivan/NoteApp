@@ -92,8 +92,10 @@ class TodoApp {
         const modal = document.getElementById('todoModal');
         const form = document.getElementById('todoForm');
         const deleteBtn = document.getElementById('deleteBtn');
+        const descEditor = document.getElementById('todoDescription');
         
         form.reset();
+        descEditor.innerHTML = '';
         
         if (todo) {
             // Edit mode
@@ -101,8 +103,9 @@ class TodoApp {
             document.getElementById('modalTitle').textContent = 'Edit To-Do';
             document.getElementById('todoId').value = todo.id;
             document.getElementById('todoTitle').value = todo.title;
+            document.getElementById('todoCategory').value = todo.category || '';
             document.getElementById('todoSubtitle').value = todo.subtitle || '';
-            document.getElementById('todoDescription').value = todo.description || '';
+            descEditor.innerHTML = todo.description || '';
             document.getElementById('todoDueDate').value = todo.dueDate || '';
             document.getElementById('todoStatus').value = todo.status;
             deleteBtn.style.display = 'block';
