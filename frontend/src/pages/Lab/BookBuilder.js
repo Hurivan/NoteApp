@@ -140,7 +140,7 @@ export default function BookBuilder() {
         </div>
       </header>
 
-      <div className="flex flex-1 h-[calc(100vh-48px)] overflow-hidden">
+      <div className="pt-12 flex flex-1 h-[calc(100vh-48px)] overflow-hidden">
         {/* Left Sidebar - Spread Thumbnails */}
         <aside className="w-48 border-r border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
           <div className="p-2 space-y-2">
