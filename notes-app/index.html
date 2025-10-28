@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>to-do list</h1>
+            <nav class="tabs">
+                <button class="tab-btn active" data-sort="dueDate">Sort by Due Date</button>
+                <button class="tab-btn" data-sort="status">Sort by Status</button>
+            </nav>
+        </header>
+
+        <div class="add-section">
+            <button class="add-btn" id="addTodoBtn">
+                <span class="plus-icon">+</span>
+            </button>
+        </div>
+
+        <div class="list-container" id="todoList">
+            <!-- Todo items will be dynamically inserted here -->
+        </div>
+
+        <div class="nav-footer">
+            <a href="notes.html" class="nav-link">Notecards</a>
+        </div>
+    </div>
+
+    <!-- Modal for editing/creating todos -->
+    <div class="modal" id="todoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add To-Do</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="todoForm">
+                <input type="hidden" id="todoId">
+                
+                <div class="form-group">
+                    <label for="todoTitle">Title</label>
+                    <input type="text" id="todoTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="todoSubtitle">Details/Tags</label>
+                    <input type="text" id="todoSubtitle">
+                </div>
+
+                <div class="form-group">
+                    <label for="todoDescription">Description</label>
+                    <textarea id="todoDescription" rows="5"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="todoDueDate">Due Date</label>
+                        <input type="date" id="todoDueDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="todoStatus">Status</label>
+                        <select id="todoStatus">
+                            <option value="To-Do">To-Do</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Save</button>
+                    <button type="button" class="btn-danger" id="deleteBtn" style="display: none;">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="todos.js"></script>
+</body>
+</html>
