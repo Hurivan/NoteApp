@@ -5,6 +5,7 @@ class TodoApp {
         this.todos = this.loadTodos();
         this.currentSort = 'dueDate';
         this.editingId = null;
+        this.scrapbookEditor = null;
         
         this.init();
     }
