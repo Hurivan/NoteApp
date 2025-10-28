@@ -166,20 +166,21 @@ export default function BookBuilder() {
 
         {/* Center - Canvas */}
         <main className="flex-1 flex flex-col bg-gray-50 overflow-hidden">
-          {viewMode === 'spread' && currentSpread && (
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSpreadIndex}
-                initial={{ opacity: 0, rotateY: -10 }}
-                animate={{ opacity: 1, rotateY: 0 }}
-                exit={{ opacity: 0, rotateY: 10 }}
-                transition={{ duration: 0.3 }}
-                className="flex-1 flex items-center justify-center overflow-auto"
-              >
-                <SpreadCanvas spread={currentSpread} spreadIndex={currentSpreadIndex} />
-              </motion.div>
-            </AnimatePresence>
-          )}
+          <div className="flex-1 flex items-center justify-center overflow-auto p-4">
+            {viewMode === 'spread' && currentSpread && (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSpreadIndex}
+                  initial={{ opacity: 0, rotateY: -10 }}
+                  animate={{ opacity: 1, rotateY: 0 }}
+                  exit={{ opacity: 0, rotateY: 10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <SpreadCanvas spread={currentSpread} spreadIndex={currentSpreadIndex} />
+                </motion.div>
+              </AnimatePresence>
+            )}
+          </div>
 
           {/* Bottom Controls */}
           <div className="border-t border-gray-200 bg-white p-3 flex-shrink-0">
