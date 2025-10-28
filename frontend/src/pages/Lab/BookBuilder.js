@@ -140,33 +140,31 @@ export default function BookBuilder() {
         </div>
       </header>
 
-      <div className="pt-12 flex flex-1 h-screen overflow-hidden">
+      <div className="flex flex-1 h-[calc(100vh-48px)] overflow-hidden">
         {/* Left Sidebar - Spread Thumbnails */}
-        <aside className="w-48 border-r border-gray-200 bg-white overflow-y-auto">
-          <ScrollArea className="h-full p-2">
-            <div className="space-y-2">
-              {spreads.map((spread, idx) => (
-                <div
-                  key={spread.id}
-                  onClick={() => setCurrentSpread(idx)}
-                  className={`cursor-pointer p-2 border transition-colors ${
-                    currentSpreadIndex === idx ? 'border-black bg-gray-50' : 'border-gray-200 hover:border-gray-400'
-                  }`}
-                >
-                  <div className="flex gap-1 mb-1">
-                    <div className="flex-1 aspect-[4/5] bg-gray-100"></div>
-                    <div className="flex-1 aspect-[4/5] bg-gray-100"></div>
-                  </div>
-                  <p className="text-xs text-center">Spread {spread.spreadNumber}</p>
+        <aside className="w-48 border-r border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
+          <div className="p-2 space-y-2">
+            {spreads.map((spread, idx) => (
+              <div
+                key={spread.id}
+                onClick={() => setCurrentSpread(idx)}
+                className={`cursor-pointer p-2 border transition-colors ${
+                  currentSpreadIndex === idx ? 'border-black bg-gray-50' : 'border-gray-200 hover:border-gray-400'
+                }`}
+              >
+                <div className="flex gap-1 mb-1">
+                  <div className="flex-1 aspect-[4/5] bg-gray-100"></div>
+                  <div className="flex-1 aspect-[4/5] bg-gray-100"></div>
                 </div>
-              ))}
-            </div>
-          </ScrollArea>
+                <p className="text-xs text-center">Spread {spread.spreadNumber}</p>
+              </div>
+            ))}
+          </div>
         </aside>
 
         {/* Center - Canvas */}
-        <main className="flex-1 bg-gray-50 relative">
-          <div className="absolute inset-0 flex items-center justify-center p-4" style={{ paddingBottom: '60px' }}>
+        <main className="flex-1 flex flex-col bg-gray-50 overflow-hidden min-w-0">
+          <div className="flex-1 flex items-center justify-center min-h-0">
             {viewMode === 'spread' && currentSpread && (
               <AnimatePresence mode="wait">
                 <motion.div
@@ -183,7 +181,7 @@ export default function BookBuilder() {
           </div>
 
           {/* Bottom Controls */}
-          <div className="absolute bottom-0 left-0 right-0 border-t border-gray-200 bg-white p-3">
+          <div className="border-t border-gray-200 bg-white p-3 flex-shrink-0">
             <div className="flex items-center justify-center gap-4">
               <Button
                 onClick={() => setCurrentSpread(Math.max(0, currentSpreadIndex - 1))}
@@ -207,7 +205,7 @@ export default function BookBuilder() {
         </main>
 
         {/* Right Sidebar - Layout Controls */}
-        <aside className="w-64 border-l border-gray-200 bg-white overflow-y-auto">
+        <aside className="w-64 border-l border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
           <div className="p-3">
             {/* Image Count Filter */}
             <div className="mb-3">
@@ -234,37 +232,35 @@ export default function BookBuilder() {
               <AccordionItem value="layouts">
                 <AccordionTrigger className="text-sm py-2">Page Layouts</AccordionTrigger>
                 <AccordionContent>
-                  <ScrollArea className="h-96">
-                    <div className="space-y-2">
-                      {filteredLayouts.map((layout) => (
-                        <button
-                          key={layout.id}
-                          onClick={() => updatePageLayout(currentSpreadIndex, 'left', layout.id)}
-                          className="w-full p-2 border border-gray-200 hover:border-black transition-colors flex items-center gap-2"
-                        >
-                          <div className="w-16 h-12 bg-white border border-gray-200 relative flex-shrink-0">
-                            {layout.positions.map((pos, idx) => (
-                              <div
-                                key={idx}
-                                className="absolute bg-gray-200"
-                                style={{
-                                  left: `${pos.x * 100}%`,
-                                  top: `${pos.y * 100}%`,
-                                  width: `${pos.w * 100}%`,
-                                  height: `${pos.h * 100}%`,
-                                  border: '1px solid white'
-                                }}
-                              />
-                            ))}
-                          </div>
-                          <div className="text-left flex-1">
-                            <p className="text-xs font-medium">{layout.name}</p>
-                            <p className="text-xs text-gray-500">{layout.slots} {layout.slots === 1 ? 'image' : 'images'}</p>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </ScrollArea>
+                  <div className="space-y-2 max-h-[600px] overflow-y-auto">
+                    {filteredLayouts.map((layout) => (
+                      <button
+                        key={layout.id}
+                        onClick={() => updatePageLayout(currentSpreadIndex, 'left', layout.id)}
+                        className="w-full p-2 border border-gray-200 hover:border-black transition-colors flex items-center gap-2"
+                      >
+                        <div className="w-16 h-12 bg-white border border-gray-200 relative flex-shrink-0">
+                          {layout.positions.map((pos, idx) => (
+                            <div
+                              key={idx}
+                              className="absolute bg-gray-200"
+                              style={{
+                                left: `${pos.x * 100}%`,
+                                top: `${pos.y * 100}%`,
+                                width: `${pos.w * 100}%`,
+                                height: `${pos.h * 100}%`,
+                                border: '1px solid white'
+                              }}
+                            />
+                          ))}
+                        </div>
+                        <div className="text-left flex-1">
+                          <p className="text-xs font-medium">{layout.name}</p>
+                          <p className="text-xs text-gray-500">{layout.slots} {layout.slots === 1 ? 'image' : 'images'}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
