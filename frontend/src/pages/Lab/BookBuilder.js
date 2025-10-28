@@ -140,9 +140,9 @@ export default function BookBuilder() {
         </div>
       </header>
 
-      <div className="pt-12 flex flex-1 h-[calc(100vh-48px)] overflow-hidden">
+      <div className="pt-12 flex h-[calc(100vh-48px)]">
         {/* Left Sidebar - Spread Thumbnails */}
-        <aside className="w-48 border-r border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
+        <aside className="w-48 h-full border-r border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
           <div className="p-2 space-y-2">
             {spreads.map((spread, idx) => (
               <div
@@ -163,8 +163,8 @@ export default function BookBuilder() {
         </aside>
 
         {/* Center - Canvas */}
-        <main className="flex-1 flex flex-col bg-gray-50 overflow-hidden min-w-0">
-          <div className="flex-1 flex items-center justify-center min-h-0">
+        <main className="flex-1 h-full flex flex-col bg-gray-50 overflow-hidden">
+          <div className="flex-1 flex items-center justify-center">
             {viewMode === 'spread' && currentSpread && (
               <AnimatePresence mode="wait">
                 <motion.div
@@ -181,7 +181,7 @@ export default function BookBuilder() {
           </div>
 
           {/* Bottom Controls */}
-          <div className="border-t border-gray-200 bg-white p-3 flex-shrink-0">
+          <div className="border-t border-gray-200 bg-white p-3 h-14 flex-shrink-0">
             <div className="flex items-center justify-center gap-4">
               <Button
                 onClick={() => setCurrentSpread(Math.max(0, currentSpreadIndex - 1))}
@@ -205,7 +205,7 @@ export default function BookBuilder() {
         </main>
 
         {/* Right Sidebar - Layout Controls */}
-        <aside className="w-64 border-l border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
+        <aside className="w-64 h-full border-l border-gray-200 bg-white flex-shrink-0 overflow-y-auto">
           <div className="p-3">
             {/* Image Count Filter */}
             <div className="mb-3">
