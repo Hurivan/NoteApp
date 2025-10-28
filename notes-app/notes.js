@@ -128,6 +128,7 @@ class NotesApp {
 
     saveNote() {
         const title = document.getElementById('noteTitle').value.trim();
+        const category = document.getElementById('noteCategory').value.trim();
         const date = document.getElementById('noteDate').value;
         const description = document.getElementById('noteDescription').value.trim();
         const content = document.getElementById('noteContent').innerHTML;
@@ -139,6 +140,7 @@ class NotesApp {
             const note = this.notes.find(n => n.id === this.editingId);
             if (note) {
                 note.title = title;
+                note.category = category;
                 note.date = date;
                 note.description = description;
                 note.content = content;
@@ -149,6 +151,7 @@ class NotesApp {
             const newNote = {
                 id: Date.now().toString(),
                 title,
+                category,
                 date,
                 description,
                 content,
