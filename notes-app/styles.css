@@ -171,7 +171,8 @@ h1 {
     font-size: 14px;
     color: #cccccc;
     flex-shrink: 0;
-    margin-top: 5px;
+    margin-top: 2px;
+    line-height: 1.5;
     transition: transform 0.2s;
 }
 
