@@ -441,6 +441,96 @@ select {
     text-decoration: underline;
 }
 
+/* Scrapbook Editor */
+.scrapbook-editor {
+    min-height: 200px;
+    max-height: 400px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.6;
+    overflow-y: auto;
+    cursor: text;
+}
+
+.scrapbook-editor:focus {
+    outline: none;
+    border-color: #999999;
+}
+
+.scrapbook-editor:empty:before {
+    content: 'Type here or drag & drop images, videos, links, or files...';
+    color: #cccccc;
+    pointer-events: none;
+}
+
+/* Scrapbook Cards */
+.scrapbook-card {
+    display: block;
+    margin: 12px 0;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    background-color: #fafafa;
+    border-radius: 4px;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.scrapbook-card:hover {
+    border-color: #cccccc;
+    background-color: #f5f5f5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.scrapbook-card-image,
+.scrapbook-card-video {
+    padding: 8px;
+}
+
+.scrapbook-card-image img,
+.scrapbook-card-video video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+
+.scrapbook-card-link {
+    cursor: pointer;
+}
+
+.scrapbook-card-link:hover {
+    background-color: #f0f0f0;
+}
+
+.scrapbook-card-file {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+}
+
+.scrapbook-card-file a {
+    color: #0066cc;
+    text-decoration: none;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.scrapbook-card-file a:hover {
+    text-decoration: underline;
+}
+
+/* Drag over state */
+.scrapbook-editor.drag-over {
+    border-color: #0066cc;
+    background-color: #f8f9ff;
+}
+
 /* Form Actions */
 .form-actions {
     display: flex;
