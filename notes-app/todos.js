@@ -211,6 +211,12 @@ class TodoApp {
         div.textContent = text;
         return div.innerHTML;
     }
+
+    stripHtml(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || '';
+    }
 }
 
 // Initialize app
