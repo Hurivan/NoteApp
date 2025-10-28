@@ -217,6 +217,7 @@ class NotesApp {
                     <div class="expand-icon">▸</div>
                     <div class="item-content">
                         <div class="item-title">${this.escapeHtml(note.title)}</div>
+                        ${note.category ? `<div class="item-category">${this.escapeHtml(note.category)}</div>` : ''}
                         ${note.description ? `<div class="item-subtitle">${this.escapeHtml(note.description)}</div>` : ''}
                         ${contentPreview ? `<div class="item-description">${this.escapeHtml(contentPreview)}${note.content.length > 100 ? '...' : ''}</div>` : ''}
                     </div>
