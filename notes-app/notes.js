@@ -58,13 +58,33 @@ class NotesApp {
         });
 
         // Rich text formatting
-        document.querySelectorAll('.format-btn').forEach(btn => {
+        document.querySelectorAll('.format-btn[data-command]').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const command = e.currentTarget.dataset.command;
                 document.execCommand(command, false, null);
                 document.getElementById('noteContent').focus();
             });
+        });
+
+        // Insert link button
+        document.getElementById('insertLinkBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = prompt('Enter URL:');
+            if (url) {
+                document.execCommand('createLink', false, url);
+            }
+            document.getElementById('noteContent').focus();
+        });
+
+        // Insert image button
+        document.getElementById('insertImageBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = prompt('Enter image URL:');
+            if (url) {
+                document.execCommand('insertImage', false, url);
+            }
+            document.getElementById('noteContent').focus();
         });
     }
 
