@@ -29,7 +29,7 @@ export default function Header() {
             <Link to="/indesign" className="hover:text-gray-600 transition-colors">For Designers</Link>
             {user ? (
               <>
-                <Link to="/account" className="hover:text-gray-600 transition-colors">Account</Link>
+                <Link to="/account" className="hover:text-gray-600 transition-colors">My Books</Link>
                 <button onClick={logout} className="hover:text-gray-600 transition-colors">Logout</button>
               </>
             ) : (
