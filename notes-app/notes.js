@@ -1,27 +1,36 @@
-// Notes App JavaScript
+// Notes App JavaScript with WordPress Integration
 
 class NotesApp {
     constructor() {
-        this.notes = this.loadNotes();
+        this.notes = [];
         this.currentSort = 'date';
         this.editingId = null;
         this.scrapbookEditor = null;
+        this.dataService = new WordPressDataService();
 
         this.init();
     }
 
-    init() {
+    async init() {
+        // Load data from server
+        await this.loadFromServer();
         this.renderNotes();
         this.attachEventListeners();
+        this.attachToolsListeners();
     }
 
-    loadNotes() {
-        const stored = localStorage.getItem('notes');
-        return stored ? JSON.parse(stored) : [];
+    async loadFromServer() {
+        const data = await this.dataService.loadFromServer();
+        this.notes = data.notes || [];
     }
 
     saveNotes() {
-        localStorage.setItem('notes', JSON.stringify(this.notes));
+        // Debounced save to server
+        const data = {
+            notes: this.notes,
+            todos: window.notesAppData?.todos || []
+        };
+        this.dataService.debouncedSave(data);
     }
 
     attachEventListeners() {
