@@ -148,8 +148,8 @@ h1 {
 
 /* List Container */
 .list-container {
-    /*border-top: 1px solid #e0e0e0;*/
-    max-width: 600px;
+    border-top: 1px solid #e0e0e0;
+    max-width: 700px;
 }
 
 .list-item {
