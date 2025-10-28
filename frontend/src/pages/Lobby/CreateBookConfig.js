@@ -169,7 +169,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('orientation', 'square_8x8')}
                           className={`w-12 h-12 flex items-center justify-center transition-all ${
                             config.orientation === 'square_8x8' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
@@ -180,7 +180,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('orientation', 'landscape_10x8')}
                           className={`w-12 h-12 flex items-center justify-center transition-all ${
                             config.orientation === 'landscape_10x8' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
@@ -191,7 +191,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('orientation', 'portrait_8x10')}
                           className={`w-12 h-12 flex items-center justify-center transition-all ${
                             config.orientation === 'portrait_8x10' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
@@ -209,14 +209,11 @@ export default function CreateBookConfig() {
                             key={fabric.id}
                             data-testid={`fabric-${fabric.id}`}
                             onClick={() => updateConfig('cover_fabric', fabric.id)}
-                            className={`w-8 h-8 transition-all ${
-                              config.cover_fabric === fabric.id 
-                                ? 'outline outline-2 outline-black' 
-                                : 'hover:opacity-80'
+                            className={`w-8 h-8 transition-all relative ${
+                              config.cover_fabric === fabric.id ? 'ring-2 ring-[#00e9af] ring-inset' : ''
                             }`}
                             style={{ 
-                              backgroundColor: fabric.color,
-                              filter: config.cover_fabric === fabric.id ? 'brightness(0.8)' : 'none'
+                              backgroundColor: fabric.color
                             }}
                             title={fabric.name}
                           />
@@ -233,7 +230,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('cover_type', 'hardcover')}
                           className={`flex-1 px-2 py-1.5 text-left transition-all ${
                             config.cover_type === 'hardcover' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
@@ -244,7 +241,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('cover_type', 'softcover')}
                           className={`flex-1 px-2 py-1.5 text-left transition-all ${
                             config.cover_type === 'softcover' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-gray-100 hover:bg-gray-200'
                           }`}
                         >
@@ -262,7 +259,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('paper_type', 'matte')}
                           className={`flex-1 p-1.5 transition-all ${
                             config.paper_type === 'matte' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-white hover:bg-gray-50'
                           }`}
                         >
@@ -274,7 +271,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('paper_type', 'glossy')}
                           className={`flex-1 p-1.5 transition-all ${
                             config.paper_type === 'glossy' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-white hover:bg-gray-50'
                           }`}
                         >
@@ -286,7 +283,7 @@ export default function CreateBookConfig() {
                           onClick={() => updateConfig('paper_type', 'silk')}
                           className={`flex-1 p-1.5 transition-all ${
                             config.paper_type === 'silk' 
-                              ? 'bg-gray-300 outline outline-2 outline-black' 
+                              ? 'bg-[#00e9af]' 
                               : 'bg-white hover:bg-gray-50'
                           }`}
                         >
@@ -303,7 +300,7 @@ export default function CreateBookConfig() {
                         data-testid="page-count-select"
                         value={config.page_count}
                         onChange={(e) => updateConfig('page_count', parseInt(e.target.value))}
-                        className="w-full px-2 py-1.5 bg-gray-100 focus:bg-gray-200 focus:outline focus:outline-2 focus:outline-black text-xs"
+                        className="w-full px-2 py-1.5 bg-gray-100 hover:bg-gray-200 focus:bg-[#00e9af] focus:outline-none text-xs"
                       >
                         {[20, 24, 30, 40, 50, 60, 80, 100, 120, 150, 200].map(count => (
                           <option key={count} value={count}>{count}</option>
