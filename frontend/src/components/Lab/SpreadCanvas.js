@@ -19,11 +19,7 @@ export default function SpreadCanvas({ spread, spreadIndex }) {
     const layout = page.layout ? LAYOUTS[page.layout.toUpperCase().replace(/-/g, '_')] : null;
 
     return (
-      <div className="w-[400px] h-[500px] bg-white relative shadow-lg">
-        {/* Center gutter hairline */}
-        {side === 'left' && <div className="absolute right-0 top-0 bottom-0 w-px bg-gray-300" />}
-        {side === 'right' && <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300" />}
-        
+      <div className="w-[400px] h-[500px] bg-white relative">
         {layout ? (
           layout.positions.map((pos, idx) => {
             const imageId = page.images?.[idx];
@@ -65,8 +61,10 @@ export default function SpreadCanvas({ spread, spreadIndex }) {
   };
 
   return (
-    <div className="flex gap-1">
+    <div className="flex relative shadow-2xl">
       {renderPage(spread.leftPage, 'left')}
+      {/* Center gutter hairline */}
+      <div className="w-px h-full bg-gray-300 absolute left-1/2 top-0 bottom-0" style={{ transform: 'translateX(-0.5px)' }} />
       {renderPage(spread.rightPage, 'right')}
     </div>
   );
