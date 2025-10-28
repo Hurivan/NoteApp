@@ -6,7 +6,7 @@ class NotesApp {
         this.currentSort = 'date';
         this.editingId = null;
         this.scrapbookEditor = null;
-        
+
         this.init();
     }
 
@@ -63,16 +63,16 @@ class NotesApp {
         const modal = document.getElementById('noteModal');
         const form = document.getElementById('noteForm');
         const deleteBtn = document.getElementById('deleteBtn');
-        
+
         form.reset();
-        
+
         // Initialize scrapbook editor if not already done
         if (!this.scrapbookEditor) {
             this.scrapbookEditor = new ScrapbookEditor('noteContent');
         }
-        
+
         this.scrapbookEditor.clear();
-        
+
         if (note) {
             // Edit mode
             this.editingId = note.id;
@@ -93,7 +93,7 @@ class NotesApp {
             document.getElementById('noteDate').value = today;
             deleteBtn.style.display = 'none';
         }
-        
+
         modal.classList.add('active');
     }
 
@@ -144,7 +144,7 @@ class NotesApp {
 
     deleteNote() {
         if (!this.editingId) return;
-        
+
         if (confirm('Are you sure you want to delete this notecard?')) {
             this.notes = this.notes.filter(n => n.id !== this.editingId);
             this.saveNotes();
@@ -155,13 +155,13 @@ class NotesApp {
 
     sortNotes() {
         const sorted = [...this.notes];
-        
+
         if (this.currentSort === 'date') {
             sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
         } else if (this.currentSort === 'title') {
             sorted.sort((a, b) => a.title.localeCompare(b.title));
         }
-        
+
         return sorted;
     }
 
@@ -187,7 +187,7 @@ class NotesApp {
         }
 
         container.innerHTML = sorted.map(note => {
-            const contentPreview = note.content ? this.stripHtml(note.content).split('\n').slice(0, 2).join(' ') : '';
+            const contentPreview = this.stripHtml(note.content).substring(0, 100);
             return `
                 <div class="list-item" data-id="${note.id}" onclick="notesApp.openModal(notesApp.notes.find(n => n.id === '${note.id}'))">
                     <div class="expand-icon">▸</div>
@@ -195,7 +195,8 @@ class NotesApp {
                         <div class="item-title">${this.escapeHtml(note.title)}</div>
                         ${note.category ? `<div class="item-category">${this.escapeHtml(note.category)}</div>` : ''}
                         ${note.description ? `<div class="item-subtitle">${this.escapeHtml(note.description)}</div>` : ''}
-                        ${contentPreview ? `<div class="item-notecontent">${this.escapeHtml(contentPreview)}</div>` : ''}
+                        ${contentPreview ? `<div class="item-description">${this.escapeHtml(contentPreview)}${note.content.length > 100 ? '...' : ''}</div>` : ''}
+                        ${note.content ? `<div class="item-notecontent">${this.escapeHtml(this.stripHtml(note.content).split('\n').slice(0, 2).join(' '))}</div>` : ''}
                     </div>
                     <div class="item-meta">
                         <div class="item-date">${this.formatDate(note.date)}</div>
