@@ -126,8 +126,9 @@ class TodoApp {
 
     saveTodo() {
         const title = document.getElementById('todoTitle').value.trim();
+        const category = document.getElementById('todoCategory').value.trim();
         const subtitle = document.getElementById('todoSubtitle').value.trim();
-        const description = document.getElementById('todoDescription').value.trim();
+        const description = document.getElementById('todoDescription').innerHTML;
         const dueDate = document.getElementById('todoDueDate').value;
         const status = document.getElementById('todoStatus').value;
 
@@ -138,6 +139,7 @@ class TodoApp {
             const todo = this.todos.find(t => t.id === this.editingId);
             if (todo) {
                 todo.title = title;
+                todo.category = category;
                 todo.subtitle = subtitle;
                 todo.description = description;
                 todo.dueDate = dueDate;
@@ -149,6 +151,7 @@ class TodoApp {
             const newTodo = {
                 id: Date.now().toString(),
                 title,
+                category,
                 subtitle,
                 description,
                 dueDate,
