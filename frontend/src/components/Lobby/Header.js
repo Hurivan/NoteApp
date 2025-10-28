@@ -63,7 +63,7 @@ export default function Header() {
               <Link to="/indesign" className="text-base" onClick={() => setIsMenuOpen(false)}>For Designers</Link>
               {user ? (
                 <>
-                  <Link to="/account" className="text-base" onClick={() => setIsMenuOpen(false)}>Account</Link>
+                  <Link to="/account" className="text-base" onClick={() => setIsMenuOpen(false)}>My Books</Link>
                   <button onClick={() => { logout(); setIsMenuOpen(false); }} className="text-base text-left">Logout</button>
                 </>
               ) : (
