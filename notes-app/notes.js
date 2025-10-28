@@ -107,7 +107,7 @@ class NotesApp {
         const category = document.getElementById('noteCategory').value.trim();
         const date = document.getElementById('noteDate').value;
         const description = document.getElementById('noteDescription').value.trim();
-        const content = document.getElementById('noteContent').innerHTML;
+        const content = this.scrapbookEditor.getContent();
 
         if (!title || !date) return;
 
