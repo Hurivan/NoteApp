@@ -114,7 +114,7 @@ export default function AccountPage() {
                       <Button
                         data-testid={`edit-project-${project.id}`}
                         onClick={() => navigate(`/app/${project.id}`)}
-                        className="flex-1 bg-[#8B1E3F] hover:bg-[#6d1731] text-white"
+                        className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700"
                       >
                         <Edit size={16} className="mr-1" />
                         Edit
