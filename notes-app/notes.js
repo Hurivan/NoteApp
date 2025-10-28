@@ -103,6 +103,7 @@ class NotesApp {
             document.getElementById('modalTitle').textContent = 'Edit Notecard';
             document.getElementById('noteId').value = note.id;
             document.getElementById('noteTitle').value = note.title;
+            document.getElementById('noteCategory').value = note.category || '';
             document.getElementById('noteDate').value = note.date;
             document.getElementById('noteDescription').value = note.description || '';
             contentEditor.innerHTML = note.content || '';
