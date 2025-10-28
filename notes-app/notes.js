@@ -5,6 +5,7 @@ class NotesApp {
         this.notes = this.loadNotes();
         this.currentSort = 'date';
         this.editingId = null;
+        this.scrapbookEditor = null;
         
         this.init();
     }
