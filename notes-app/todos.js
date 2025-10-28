@@ -186,27 +186,36 @@ class TodoApp {
             return;
         }
 
-        container.innerHTML = sorted.map(todo => `
-            <div class="list-item" data-id="${todo.id}" onclick="app.openModal(app.todos.find(t => t.id === '${todo.id}'))">
-                <div class="expand-icon">▸</div>
-                <div class="item-content">
-                    <div class="item-title">${this.escapeHtml(todo.title)}</div>
-                    ${todo.category ? `<div class="item-category">${this.escapeHtml(todo.category)}</div>` : ''}
-                    ${todo.subtitle ? `<div class="item-subtitle">${this.escapeHtml(todo.subtitle)}</div>` : ''}
-                    ${todo.description ? `<div class="item-description">${todo.description}</div>` : ''}
+        container.innerHTML = sorted.map(todo => {
+            const descriptionPreview = todo.description ? this.stripHtml(todo.description).split('\n').slice(0, 2).join(' ') : '';
+            return `
+                <div class="list-item" data-id="${todo.id}" onclick="app.openModal(app.todos.find(t => t.id === '${todo.id}'))">
+                    <div class="expand-icon">▸</div>
+                    <div class="item-content">
+                        <div class="item-title">${this.escapeHtml(todo.title)}</div>
+                        ${todo.category ? `<div class="item-category">${this.escapeHtml(todo.category)}</div>` : ''}
+                        ${todo.subtitle ? `<div class="item-subtitle">${this.escapeHtml(todo.subtitle)}</div>` : ''}
+                        ${descriptionPreview ? `<div class="item-notecontent">${this.escapeHtml(descriptionPreview)}</div>` : ''}
+                    </div>
+                    <div class="item-meta">
+                        ${todo.dueDate ? `<div class="item-date">${this.formatDate(todo.dueDate)}</div><span class="meta-divider">-</span>` : ''}
+                        <div class="item-status">${todo.status}</div>
+                    </div>
                 </div>
-                <div class="item-meta">
-                    ${todo.dueDate ? `<div class="item-date">${this.formatDate(todo.dueDate)}</div><span class="meta-divider">-</span>` : ''}
-                    <div class="item-status">${todo.status}</div>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    stripHtml(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || '';
     }
 }
 
