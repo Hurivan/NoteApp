@@ -225,7 +225,42 @@ class NotesApp {
         div.textContent = text;
         return div.innerHTML;
     }
+
+    attachToolsListeners() {
+        // Export button
+        document.getElementById('exportBtn')?.addEventListener('click', () => {
+            const data = {
+                notes: this.notes,
+                todos: window.notesAppData?.todos || []
+            };
+            this.dataService.exportData(data);
+        });
+
+        // Import button
+        document.getElementById('importBtn')?.addEventListener('click', () => {
+            document.getElementById('importFile').click();
+        });
+
+        // Import file input
+        document.getElementById('importFile')?.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                try {
+                    const data = await this.dataService.importData(file);
+                    this.notes = data.notes || [];
+                    this.renderNotes();
+                    
+                    // Notify other page to reload
+                    window.notesAppData = data;
+                } catch (error) {
+                    console.error('Import failed:', error);
+                }
+                e.target.value = ''; // Reset file input
+            }
+        });
+    }
 }
 
-// Initialize app
+// Initialize app and make it globally accessible
 const notesApp = new NotesApp();
+window.notesAppData = window.notesAppData || { notes: notesApp.notes, todos: [] };
