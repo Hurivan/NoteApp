@@ -63,10 +63,15 @@ class TodoApp {
         const modal = document.getElementById('todoModal');
         const form = document.getElementById('todoForm');
         const deleteBtn = document.getElementById('deleteBtn');
-        const descEditor = document.getElementById('todoDescription');
         
         form.reset();
-        descEditor.innerHTML = '';
+        
+        // Initialize scrapbook editor if not already done
+        if (!this.scrapbookEditor) {
+            this.scrapbookEditor = new ScrapbookEditor('todoDescription');
+        }
+        
+        this.scrapbookEditor.clear();
         
         if (todo) {
             // Edit mode
@@ -76,7 +81,7 @@ class TodoApp {
             document.getElementById('todoTitle').value = todo.title;
             document.getElementById('todoCategory').value = todo.category || '';
             document.getElementById('todoSubtitle').value = todo.subtitle || '';
-            descEditor.innerHTML = todo.description || '';
+            this.scrapbookEditor.setContent(todo.description || '');
             document.getElementById('todoDueDate').value = todo.dueDate || '';
             document.getElementById('todoStatus').value = todo.status;
             deleteBtn.style.display = 'block';
