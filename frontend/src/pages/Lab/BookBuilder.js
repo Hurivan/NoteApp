@@ -107,8 +107,8 @@ export default function BookBuilder() {
   return (
     <div className="lab min-h-screen flex flex-col">
       {/* Top Toolbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
-        <div className="flex items-center justify-between px-4 py-2">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 h-12">
+        <div className="flex items-center justify-between px-4 py-2 h-full">
           <div className="flex items-center gap-3">
             <Button onClick={() => navigate('/account')} variant="ghost" size="sm">
               <ArrowLeft size={16} className="mr-1" />Back
