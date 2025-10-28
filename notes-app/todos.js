@@ -1,27 +1,36 @@
-// Todo App JavaScript
+// Todo App JavaScript with WordPress Integration
 
 class TodoApp {
     constructor() {
-        this.todos = this.loadTodos();
+        this.todos = [];
         this.currentSort = 'dueDate';
         this.editingId = null;
         this.scrapbookEditor = null;
+        this.dataService = new WordPressDataService();
         
         this.init();
     }
 
-    init() {
+    async init() {
+        // Load data from server
+        await this.loadFromServer();
         this.renderTodos();
         this.attachEventListeners();
+        this.attachToolsListeners();
     }
 
-    loadTodos() {
-        const stored = localStorage.getItem('todos');
-        return stored ? JSON.parse(stored) : [];
+    async loadFromServer() {
+        const data = await this.dataService.loadFromServer();
+        this.todos = data.todos || [];
     }
 
     saveTodos() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        // Debounced save to server
+        const data = {
+            todos: this.todos,
+            notes: window.notesAppData?.notes || []
+        };
+        this.dataService.debouncedSave(data);
     }
 
     attachEventListeners() {
