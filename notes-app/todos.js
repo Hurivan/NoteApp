@@ -104,7 +104,7 @@ class TodoApp {
         const title = document.getElementById('todoTitle').value.trim();
         const category = document.getElementById('todoCategory').value.trim();
         const subtitle = document.getElementById('todoSubtitle').value.trim();
-        const description = document.getElementById('todoDescription').innerHTML;
+        const description = this.scrapbookEditor.getContent();
         const dueDate = document.getElementById('todoDueDate').value;
         const status = document.getElementById('todoStatus').value;
 
