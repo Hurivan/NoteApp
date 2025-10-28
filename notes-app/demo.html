@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapbook Editor Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .demo-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+        
+        .demo-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .demo-header p {
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .instructions {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        
+        .instructions h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+        
+        .instructions ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        .editor-container {
+            margin-bottom: 30px;
+        }
+        
+        .editor-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .test-links {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        .test-links h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+        
+        .test-link {
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+            padding: 8px 16px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .test-link:hover {
+            border-color: #0066cc;
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>Scrapbook Editor Demo</h1>
+        <p>Apple Notes-style contenteditable area with drag & drop and paste support</p>
+    </div>
+
+    <div class="instructions">
+        <h2>How to Use</h2>
+        <ul>
+            <li><strong>Type:</strong> Click in the editor and type normally</li>
+            <li><strong>Paste Text:</strong> Copy and paste any text</li>
+            <li><strong>Paste URLs:</strong> Copy a URL and paste it to create a link card</li>
+            <li><strong>Drag Images:</strong> Drag image files from your desktop</li>
+            <li><strong>Drag Videos:</strong> Drag video files (MP4, MOV, WebM)</li>
+            <li><strong>Drag Files:</strong> Drag PDFs or other files to create download links</li>
+            <li><strong>Type Between Cards:</strong> Click between cards to keep typing</li>
+        </ul>
+    </div>
+
+    <div class="editor-container">
+        <div class="editor-label">Scrapbook Editor</div>
+        <div id="demoEditor" class="scrapbook-editor"></div>
+    </div>
+
+    <div class="test-links">
+        <h3>Test Links (Drag or Copy/Paste these):</h3>
+        <a href="https://github.com" class="test-link" draggable="true">GitHub</a>
+        <a href="https://stackoverflow.com" class="test-link" draggable="true">Stack Overflow</a>
+        <a href="https://news.ycombinator.com" class="test-link" draggable="true">Hacker News</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="test-link" draggable="true">YouTube Video</a>
+        <p style="margin-top: 15px; font-size: 13px; color: #999999;">
+            You can also paste image URLs like: https://via.placeholder.com/600x400
+        </p>
+    </div>
+
+    <script src="scrapbook-editor.js"></script>
+    <script>
+        // Initialize the scrapbook editor
+        const editor = new ScrapbookEditor('demoEditor');
+        
+        // Add some demo content
+        editor.setContent(`
+            <p>Welcome to the Scrapbook Editor! Try dragging and dropping:</p>
+            <ul>
+                <li>Images from your computer</li>
+                <li>Videos or files</li>
+                <li>Links from the test section below</li>
+            </ul>
+            <p><br></p>
+        `);
+    </script>
+</body>
+</html>
