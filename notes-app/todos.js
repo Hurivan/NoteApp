@@ -215,8 +215,9 @@ class TodoApp {
                 <div class="expand-icon">▸</div>
                 <div class="item-content">
                     <div class="item-title">${this.escapeHtml(todo.title)}</div>
+                    ${todo.category ? `<div class="item-category">${this.escapeHtml(todo.category)}</div>` : ''}
                     ${todo.subtitle ? `<div class="item-subtitle">${this.escapeHtml(todo.subtitle)}</div>` : ''}
-                    ${todo.description ? `<div class="item-description">${this.escapeHtml(todo.description)}</div>` : ''}
+                    ${todo.description ? `<div class="item-description">${todo.description}</div>` : ''}
                 </div>
                 <div class="item-meta">
                     ${todo.dueDate ? `<div class="item-date">${this.formatDate(todo.dueDate)}</div><span class="meta-divider">-</span>` : ''}
