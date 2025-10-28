@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>To-Do List - ProjectX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="brand-logo">ProjectX</div>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-item active">To-Do</a>
+                <a href="notes.html" class="nav-item">Notes</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
-        <header>
+        <div class="page-header">
             <h1>to-do list</h1>
             <nav class="tabs">
                 <button class="tab-btn active" data-sort="dueDate">Sort by Due Date</button>
                 <button class="tab-btn" data-sort="status">Sort by Status</button>
             </nav>
-        </header>
+        </div>
 
         <div class="add-section">
             <button class="add-btn" id="addTodoBtn">
@@ -27,10 +37,6 @@
 
         <div class="list-container" id="todoList">
             <!-- Todo items will be dynamically inserted here -->
-        </div>
-
-        <div class="nav-footer">
-            <a href="notes.html" class="nav-link">Notecards</a>
         </div>
     </div>
 
@@ -50,13 +56,27 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="todoCategory">Category</label>
+                    <input type="text" id="todoCategory" placeholder="e.g., Work, Personal, Project">
+                </div>
+
+                <div class="form-group">
                     <label for="todoSubtitle">Details/Tags</label>
                     <input type="text" id="todoSubtitle">
                 </div>
 
                 <div class="form-group">
                     <label for="todoDescription">Description</label>
-                    <textarea id="todoDescription" rows="5"></textarea>
+                    <div class="editor-toolbar">
+                        <button type="button" class="format-btn" data-command="bold" title="Bold"><strong>B</strong></button>
+                        <button type="button" class="format-btn" data-command="italic" title="Italic"><em>I</em></button>
+                        <button type="button" class="format-btn" data-command="underline" title="Underline"><u>U</u></button>
+                        <button type="button" class="format-btn" data-command="insertUnorderedList" title="Bullet List">•</button>
+                        <button type="button" class="format-btn" data-command="insertOrderedList" title="Numbered List">1.</button>
+                        <button type="button" class="format-btn" id="insertLinkBtn" title="Insert Link">🔗</button>
+                        <button type="button" class="format-btn" id="insertImageBtn" title="Insert Image">🖼</button>
+                    </div>
+                    <div id="todoDescription" class="rich-text-editor" contenteditable="true"></div>
                 </div>
 
                 <div class="form-row">

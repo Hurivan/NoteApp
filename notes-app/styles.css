@@ -11,13 +11,60 @@ body {
     line-height: 1.6;
 }
 
+/* Site Header */
+.site-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.header-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    letter-spacing: 0.5px;
+}
+
+.header-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    font-size: 14px;
+    color: #666666;
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 5px 0;
+}
+
+.nav-item:hover {
+    color: #000000;
+}
+
+.nav-item.active {
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Container */
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 0 20px 40px;
 }
 
-header {
+.page-header {
     margin-bottom: 40px;
 }
 
@@ -75,6 +122,7 @@ h1 {
 
 .add-btn {
     width: 100%;
+    max-width: 700px;
     height: 60px;
     background-color: #fafafa;
     border: 1px solid #e0e0e0;
@@ -98,6 +146,7 @@ h1 {
 /* List Container */
 .list-container {
     border-top: 1px solid #e0e0e0;
+    max-width: 700px;
 }
 
 .list-item {
@@ -141,6 +190,19 @@ h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.item-category {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #999999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    padding: 2px 8px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
 }
 
 .item-subtitle {
@@ -221,6 +283,8 @@ h1 {
     width: 100%;
     max-width: 600px;
     border: 1px solid #e0e0e0;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal-header {
@@ -316,28 +380,41 @@ select {
     display: flex;
     gap: 5px;
     margin-bottom: 8px;
-    padding: 5px;
+    padding: 8px;
     border: 1px solid #e0e0e0;
     border-bottom: none;
     background-color: #fafafa;
+    flex-wrap: wrap;
 }
 
 .format-btn {
     background: none;
-    border: none;
-    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    padding: 6px 10px;
     cursor: pointer;
     font-size: 14px;
     color: #666666;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    background-color: #ffffff;
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .format-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #999999;
+}
+
+.format-btn:active {
     background-color: #e0e0e0;
 }
 
 .rich-text-editor {
     min-height: 150px;
+    max-height: 300px;
     padding: 12px;
     border: 1px solid #e0e0e0;
     background-color: #ffffff;
@@ -351,6 +428,17 @@ select {
 .rich-text-editor:focus {
     outline: none;
     border-color: #999999;
+}
+
+.rich-text-editor img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.rich-text-editor a {
+    color: #0066cc;
+    text-decoration: underline;
 }
 
 /* Form Actions */
@@ -405,25 +493,6 @@ select {
     color: #ffffff;
 }
 
-/* Navigation Footer */
-.nav-footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
-    text-align: center;
-}
-
-.nav-link {
-    font-size: 14px;
-    color: #666666;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.nav-link:hover {
-    color: #000000;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     h1 {
@@ -436,5 +505,11 @@ select {
     
     .modal-content {
         margin: 20px;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
     }
 }
