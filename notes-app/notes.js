@@ -68,6 +68,11 @@ class NotesApp {
         });
     }
 
+    attachToolsListeners() {
+        // Tools integration listeners will be added here
+        // This method is called from init() to set up any additional tool integrations
+    }
+
     openModal(note = null) {
         const modal = document.getElementById('noteModal');
         const form = document.getElementById('noteForm');
