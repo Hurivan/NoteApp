@@ -228,10 +228,10 @@ h1 {
     line-height: 1.5;
 }
 .item-notecontent {
-  font-size: 8pt;
-  color: #555;
-  line-height: 1.2;
-  margin-top: 2px;
+  font-size: 7.5pt;
+  color: #888;
+  line-height: 1.15;
+  margin-top: 1px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* limit to 2 lines visually */
